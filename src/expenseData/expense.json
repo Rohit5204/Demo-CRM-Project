@@ -1,0 +1,20 @@
+{
+  "expenses": [
+    {
+      "id": 3,
+      "category": "Utility",
+      "date": "2022-09-14",
+      "type": "Debit Card",
+      "amount": "565656",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "category": "Others",
+      "date": "2022-01-11",
+      "type": "Debit Card",
+      "amount": "1400",
+      "description": "Car Expense"
+    }
+  ]
+}
