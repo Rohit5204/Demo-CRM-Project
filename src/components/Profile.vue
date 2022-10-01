@@ -24,9 +24,9 @@
                         <v-list-item-title v-text="items.text"></v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item >
-                    <v-list-item-icon>
-                        <v-icon color="white">mdi-logout</v-icon>
+                <v-list-item @click="logout()">
+                    <v-list-item-icon >
+                        <v-icon color="white" >mdi-logout</v-icon>
                     </v-list-item-icon>
 
                     <v-list-item-content>
@@ -50,6 +50,11 @@ export default {
             }, ],
             profileDetails: JSON.parse(localStorage.getItem("profile")),
         };
+    },
+    methods: {
+        logout() {
+            this.$router.push({ name: "Login" });
+        },
     },
 };
 </script>

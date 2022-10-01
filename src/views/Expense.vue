@@ -2,23 +2,21 @@
 <div>
     <v-container>
         <h1 class="display-1" align="center">EXPENSES MANAGER TABLE</h1>
-        <br />
+        <br/>
         <v-row>
             <v-col cols="10">
-                <v-text-field placeholder="Search Box" append-icon="mdi-magnify" v-model="search" outlined></v-text-field>
+                <v-text-field placeholder="Search Box" append-icon="mdi-magnify" v-model="expense" outlined></v-text-field>
             </v-col>
             <v-spacer></v-spacer>
-            <v-col>
-                <v-btn color="success" @click="dialog = true">ADD Expense</v-btn>
+            <v-col class="mt-2">
+                <v-btn color="success" @click="goToExpenseForm()">ADD Expense</v-btn>
             </v-col>
         </v-row>
-        <expense-form v-model="dialog"></expense-form>
-        <v-data-table :headers="headers" :items="expenses" :search="search" class="elevation-4" round-lg hide-default-footer>
+        <expense-form v-model="dialog" :expenseData="expenseData" :addFlag="addFlag" @close="getItem()" @addExpenseData="postItem($event)" @editExpenseData="editItem($event)"></expense-form>
+        <v-data-table :headers="headers" :items="items" :search="expense" class="elevation-4" hide-default-footer>
             <template v-slot:item.action="{ item }">
-                <v-icon color="success" @click="goToUpdatePage"> mdi-square-edit-outline </v-icon> |
-                <v-icon color="red" @click="removeData(item.id)">
-                    mdi-delete-outline
-                </v-icon>
+                <v-icon @click="sendDataForEdit(item)" color="success">mdi-square-edit-outline</v-icon> |
+                <v-icon @click="deleteItem(item.id)" color="red">mdi-delete-outline</v-icon>
             </template>
         </v-data-table>
     </v-container>
@@ -26,42 +24,66 @@
 </template>
 
 <script>
-import axios from 'axios';
-import ExpenseForm from '@/components/ExpenseForm.vue';
+import axios from "axios";
+import ExpenseForm from "@/components/ExpenseForm.vue";
 export default {
-    data: () => ({
-        dialog: false,
-        search: "",
-        expenses: [],
-        headers: [
-            { text: 'Sr. No', value: 'id', },
-            { text: 'Amount (Rs.)', value: 'amount', },
-            { text: 'Date', value: 'date' },
-            { text: 'Category', value: 'category' },
-            { text: 'Type', value: 'type' },
-            { text: 'Description', value: 'description' },
-            { text: 'Actions', value: 'action' },
-        ],
-    }),
     components: {
         ExpenseForm,
     },
-    mounted() {
-        this.getData();
+    data() {
+        return {
+            expenseData: {},
+            addFlag: true,
+            dialog: false,
+            expense: "",
+            headers: [
+                { text: "ExpId", value: "id" },
+                { text: "Category", value: "category" },
+                { text: "Amount", value: "amount" },
+                { text: "Date", value: "date" },
+                { text: "Type", value: "type" },
+                { text: "Description", value: "description" },
+                { text: "Action", value: "action" },
+            ],
+            items: [],
+        };
+    },
+    async mounted() {
+        await this.getItem();
     },
     methods: {
-        getData() {
-            axios.get("http://localhost:3000/expenses").then((res) =>
-                this.expenses = res.data
-            )
+        async getItem() {
+            await axios
+                .get("http://localhost:3000/items")
+                .then((response) => (this.items = response.data));
         },
-        removeData(id) {
-            axios.delete(`http://localhost:3000/expenses/${id}`);
-            this.expenses = this.expenses.filter((expense) => expense.id !== id);
+        async postItem(event) {
+            await axios
+                .post("http://localhost:3000/items", event)
+                .then(() => this.getItem());
         },
-        goToUpdatePage() {
+        async editItem(event) {
+            await axios
+                .put("http://localhost:3000/items/" + event.id, event)
+                .then(() => this.getItem());
+        },
+        async deleteItem(id) {
+            await axios
+                .delete("http://localhost:3000/items/" + id)
+                .then(() => this.getItem());
+        },
+        sendDataForEdit(item) {
+            this.expenseData = item;
+            this.addFlag = false;
             this.dialog = true;
-        }
+        },
+        goToExpenseForm() {
+            this.addFlag = true;
+            this.dialog = true;
+        },
     },
-}
+};
 </script>
+
+<style lang="scss" scoped>
+</style>

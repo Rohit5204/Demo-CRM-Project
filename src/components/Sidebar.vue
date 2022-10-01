@@ -1,5 +1,5 @@
 <template>
-<v-navigation-drawer app height="100%" color=" grey lighten-2" v-model="drawer" absolute :permanent="$vuetify.breakpoint.mdAndUp" :temporary="$vuetify.breakpoint.smAndDown" left>
+<v-navigation-drawer app height="100%" color=" grey lighten-2" v-model="drawer" :permanent="$vuetify.breakpoint.mdAndUp" :temporary="$vuetify.breakpoint.smAndDown" left>
     <v-list>
         <v-list-item class="px-2">
             <v-list-item-content>
@@ -20,11 +20,6 @@
                 <v-list-item-subtitle>
                     <v-layout>
                         <v-flex>Admin
-
-                        </v-flex>
-                        <v-flex text-right>
-
-                            <v-icon>mdi-logout</v-icon>
                         </v-flex>
                     </v-layout>
                 </v-list-item-subtitle>
@@ -64,20 +59,16 @@ export default {
             user: "",
             name: "",
             links: [
-                ["mdi-view-dashboard", "Dashboard", "/"],
+                ["mdi-view-dashboard", "Dashboard", "/dashboard"],
                 ["mdi-send", "Expense", "/about"],
-                ["mdi-webpack", "Leads", "/service"],
-                 ["mdi-bank", "Platform", "/dept"],
+                ["mdi-webpack", "Leads", ""],
+                ["mdi-bank", "Platform", ""],
                 // ["mdi-account-multiple", "Employee", "/emp"],
                 // ["mdi-graph", "Roles", "/role"],
             ],
         };
     },
     methods: {
-        logout() {
-            localStorage.removeItem("Name");
-            this.$router.push({ name: "Login" });
-        },
         hhh() {
             this.user = localStorage.getItem("LAST");
         },

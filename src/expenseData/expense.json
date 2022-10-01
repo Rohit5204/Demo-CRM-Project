@@ -1,20 +1,36 @@
 {
-  "expenses": [
+  "items": [
     {
-      "id": 3,
-      "category": "Utility",
-      "date": "2022-09-14",
-      "type": "Debit Card",
-      "amount": "565656",
-      "description": ""
+      "category": "General Expenses",
+      "date": "2022-09-11",
+      "type": "debit card",
+      "amount": "4520",
+      "description": "Bus Ticket",
+      "id": 1
     },
     {
-      "id": 4,
-      "category": "Others",
-      "date": "2022-01-11",
-      "type": "Debit Card",
-      "amount": "1400",
-      "description": "Car Expense"
+      "category": "General Expenses",
+      "date": "2021-04-24",
+      "type": "debit card",
+      "amount": "457",
+      "description": "Petrol",
+      "id": 4
+    },
+    {
+      "category": "Shopping",
+      "date": "2022-06-01",
+      "amount": "3564",
+      "type": "credit card",
+      "description": "",
+      "id": 5
+    },
+    {
+      "category": "Travel",
+      "date": "2022-10-19",
+      "type": "debit card",
+      "amount": "32.65",
+      "description": "topup",
+      "id": 6
     }
   ]
 }

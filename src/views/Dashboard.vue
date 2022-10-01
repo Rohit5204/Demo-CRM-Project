@@ -15,7 +15,7 @@
             </v-col>
         </v-row>
         <v-row>
-            <v-col cols="12">
+            <v-col cols="12" class="mb-5">
                 <v-card elevation="10" class="mr-1" width="auto">
                     <v-card-title primary-title>
                         PLATFORM WISE LEADS
@@ -25,11 +25,6 @@
             </v-col>
         </v-row>
     </v-layout>
-    <!-- <v-layout wrap>
-        <v-flex v-for="i in platformItems" :key="i.title">
-            <widgets-dashboard :value="i.value" :title="i.title" :icon="i.icon"></widgets-dashboard>
-        </v-flex>
-    </v-layout> -->
     <v-layout>
         <v-row>
             <v-col>
@@ -112,31 +107,31 @@ export default {
                     color: "blue-grey lighten-4"
                 },
             ],
-            platformItems: [{
-                    value: 11,
-                    title: "Facebook",
-                    icon: "mdi-facebook",
+            // platformItems: [{
+            //         value: 11,
+            //         title: "Facebook",
+            //         icon: "mdi-facebook",
 
-                },
-                {
-                    value: 35,
-                    title: "Instagram",
-                    icon: "mdi-instagram",
+            //     },
+            //     {
+            //         value: 35,
+            //         title: "Instagram",
+            //         icon: "mdi-instagram",
 
-                },
-                {
-                    value: 41,
-                    title: "Justdial",
-                    icon: "mdi-circle",
+            //     },
+            //     {
+            //         value: 41,
+            //         title: "Justdial",
+            //         icon: "mdi-circle",
 
-                },
-                {
-                    value: 15,
-                    title: "India Mart",
-                    icon: "mdi-google-plus",
+            //     },
+            //     {
+            //         value: 15,
+            //         title: "India Mart",
+            //         icon: "mdi-google-plus",
 
-                },
-            ],
+            //     },
+            // ],
         }
     },
 }
